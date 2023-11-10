@@ -1,65 +1,86 @@
-######## définition globales ##########
+import random
+def main():
+# définition globales
 
-nourriture = 10000
-nbrReine = [1]
-poidFourmisMg = 6
-nbrFourmis = 1000
-nbrFourmisListe = []
+    food_stock = 1000
+    queen_nbr = [1]
+    ant_weight = 6
+    ant_nbr = 20
+    ant_list = []
+    day = 0
 
-for x in range (nbrFourmis) :
-    nbrFourmisListe[x] = x
+    # définition de classe
 
-######## définition de classe #########
+    class Basic_ant:
+        def __init__(self, isalive, birth, phase):
+            self.isAlive = isalive
+            self.birth = birth
+            self.phase = phase
 
-class fourmisGenerique :
-    def __init__(self, isAlive, naissance, phase) :
-        self.isAlive = isAlive 
-        self.naissance = naissance
-        self.phase = phase
+        def description(self):
+            return f"classe générique de fourmis."
 
-    def description(self) :
-        return f"classe générique de fourmis."
-    def __str__(self) :
-        return self.description
-    
-    def isGonnaDie(self, compteur) :
-        if (compteur - self.naissance >= 10 ) :
-            self.isAlive = False
-        return
+        def __str__(self):
+            return self.description
 
+        def isGonnaDie(self, counter):
+            if counter - self.birth >= 10:
+                self.isAlive = False
 
-class reineFourmis(fourmisGenerique) :
-    def __init__(self, ) :
-        super().__init__()
-        self
+# class reineFourmis(fourmisGenerique):
+#    def __init__(self, ):
+#         super().__init__()
+#        self
 
-    def __str__(self) :
-        return super().__str__ + f""
-    
-###### fonctions #########
+#     def __str__(self):
+#        return super().__str__ + f""
+    ant_list.append(Basic_ant(True, day, "oeuf"))  #reine à devenir
+    for x in range(ant_nbr):
+        ant_list.append(Basic_ant(True, day, "oeuf"))
 
-def canEat(nourriture) :             ##une colonie mangera la moitié du poid de la colonie 
-    need2eat = (nbrFourmis * poidFourmisMg)/2
-    if need2eat < nourriture :
-        nourriture = nourriture - need2eat
-    else :
-        for x in range((need2eat - nourriture)/poidFourmisMg*2):
-            nbrFourmis = nbrFourmis - 1
-            nbrFourmisListe.pop(1)
-    return
-            
-def getFood(nbrFourmis) :
-    nourriture = (nbrFourmis * poidFourmisMg) * 0.25 
-    return nourriture
-        
-###### main #######
+    def canEat():
+        reduced_food = ant_nbr * ant_weight / 2
+        return reduced_food
 
-def main() :
-    jour = 0
-    def affichage() :
-        print(f"Jour : {jour} \nFourmis dans la colonie : {nbrFourmis} \n Nourriture de la colonie : {nourriture}")
-    while nbrFourmis > 0 :
-        jour = jour + 1
-        canEat()
-        getFood()
+    def getFood():
+        added_food = (ant_nbr * ant_weight) * 0.3
+        return added_food
+
+    def killAnt(nbrdeath):
+        alive_ant = []
+        killed_ant = 0
+        for ant in ant_list:
+            if ant.isAlive:
+                alive_ant.append(ant)
+        for p in range(round(nbrdeath)):
+            if len(alive_ant) > 1:
+                ant_list[p].isAlive = False
+                killed_ant += 1
+        return killed_ant
+
+    def reduceAnt():
+        reduced_ant = (food_stock - consumed_food) * ant_weight / 2 * -1
+        return reduced_ant
+
+    def affichage():
+        print(f"Jour : {day} \nFourmis dans la colonie : {ant_nbr} \nNourriture de la colonie : {food_stock} \nNourriture consomée : {consumed_food}")
+
+    while True:
+        day = day + 1
+        consumed_food = canEat()
+        founded_food = getFood()
+        food_stock -= consumed_food
+        if food_stock <= 0:
+            nbrdeadant = reduceAnt()
+            ant_nbr -= killAnt(nbrdeadant)
+            food_stock = 0
+        for element in ant_list:
+            element.isGonnaDie(day)
+        food_stock += founded_food
+        ant_nbr -= killAnt(random.randint(0, 5))
+        if ant_nbr <= 0:
+            affichage()
+            break
         affichage()
+
+main()

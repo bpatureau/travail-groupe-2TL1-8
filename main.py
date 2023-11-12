@@ -52,10 +52,10 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
 
 
     def affichage():
-        print(f"Jour : {day} \nFourmis dans la colonie : {ant_nbr} \n Nourriture de la colonie : {food_stock}\n nourriture consommée : {consumed_food}")
+        print(f"Jour : {day} \nFourmis dans la colonie : {ant_nbr} \n Nourriture de la colonie : {food_stock}\n Nourriture consommée : {consumed_food}")
 
     while True:
-
+        input("press enter to continue")
         nbrdeadant = 0
         day = day + 1
         consumed_food, brought_food = manageFoodStock()
@@ -75,5 +75,4 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         else:
             affichage()
 
-main(1100, 2, 6, 100, 2)
-
+main(1100, 1, 6, 100, 2)

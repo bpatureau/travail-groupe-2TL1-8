@@ -2,11 +2,6 @@
 
 def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
 # définition globales
-
-    food_stock = 11000
-    queen_nbr = [1]
-    ant_weight = 6
-    ant_nbr = 100
     ant_list = []
     day = 0
 

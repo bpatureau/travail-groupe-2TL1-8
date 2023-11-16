@@ -1,4 +1,7 @@
 # main
+from random import random
+
+
 def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
 # définition globales
     ant_list = []
@@ -32,10 +35,12 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         ant_list.append(Basic_ant(True, day, "oeuf"))
 
     def manageFoodStock():
-        nourritureRamenee = ant_nbr * 2.6
+        nourritureRamenee = ant_nbr * (random() * 2.5 + 0.5)
         nourritureConsommee = (ant_nbr * ant_weight) / 2
         return (nourritureConsommee, nourritureRamenee)
-
+    def genRandomDeath():
+        generatedrandomdeath = (ant_nbr * round(pow(2, random()) - 1) * 75 / 100)
+        return generatedrandomdeath
     def manageAntTable(nbrdeath):
         nbrQueen = 0
         for ant in ant_list:
@@ -62,6 +67,7 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         food_stock = food_stock + brought_food
         if food_stock - consumed_food < 0:
             nbrdeadant = (food_stock - consumed_food)*ant_weight/2 * -1
+        nbrdeadant += round(genRandomDeath())
         manageAntTable(nbrdeadant)
         ant_nbr = len(ant_list)
         food_stock = food_stock - consumed_food
@@ -75,4 +81,4 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         else:
             affichage()
 
-main(1100, 1, 6, 100, 2)
+main(2000, 1, 6, 100, 300)

@@ -35,7 +35,7 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         ant_list.append(Basic_ant(True, day, "oeuf"))
 
     def manageFoodStock():
-        nourritureRamenee = ant_nbr * (random() + 1) * foodmodifier
+        nourritureRamenee = ant_nbr * (random() + 1) * (foodmodifier * 2)
         nourritureConsommee = (ant_nbr * ant_weight) / 2
         return (nourritureConsommee, nourritureRamenee)
     def genRandomDeath():
@@ -61,7 +61,7 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
 
     while True:
         input("press enter to continue")
-        foodmodifier = 2
+        foodmodifier = 1
         nbrdeadant = 0
         day = day + 1
         consumed_food, brought_food = manageFoodStock()

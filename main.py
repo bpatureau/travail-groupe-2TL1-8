@@ -39,7 +39,8 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         nourritureConsommee = (ant_nbr * ant_weight) / 2
         return (nourritureConsommee, nourritureRamenee)
     def genRandomDeath():
-        generatedrandomdeath = (ant_nbr * round(pow(2, random()) - 1) * 75 / 100)
+        generatedrandomdeath = round((ant_nbr * (pow(2, random()) - 1) * 75 / 100))
+        print(generatedrandomdeath)
         return generatedrandomdeath
     def manageAntTable(nbrdeath):
         nbrQueen = 0
@@ -57,11 +58,13 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
 
 
     def affichage():
-        print(f"Jour : {day} \nFourmis dans la colonie : {ant_nbr} \n Nourriture de la colonie : {food_stock}\n Nourriture consommée : {consumed_food}")
+        print(f"Jour : {day} \nFourmis dans la colonie : {ant_nbr} \n Nourriture de la colonie : {round(food_stock, 2)}g\n Nourriture consommée : {consumed_food}\n{displayant}\n{displayfood}")
 
     while True:
         input("press enter to continue")
         foodmodifier = 1
+        displayant = ""
+        displayfood = ""
         nbrdeadant = 0
         day = day + 1
         consumed_food, brought_food = manageFoodStock()
@@ -72,6 +75,12 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbrBirth):
         manageAntTable(nbrdeadant)
         ant_nbr = len(ant_list)
         food_stock = food_stock - consumed_food
+        displayantfactor = round(ant_nbr / 2000 * 10)
+        displayfoodfactor = round(food_stock / 7500 * 10)
+        for ant in range(displayantfactor):
+            displayant += "🐜"
+        for food in range(displayfoodfactor):
+            displayfood += "🥞"
         if food_stock < 0:
             food_stock = 0
         if ant_nbr <= 0:

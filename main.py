@@ -28,6 +28,13 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbr_birth):
 
         def __str__(self):
             return f"Reine"
+    class Event:
+        def __init__(self, nom, effet):
+            self.nom = nom
+            self.effet = effet
+        def __str__(self):
+            return f"{self.nom} est un évenement qui {self.effet}"
+
 
     for queen in range(queen_nbr):
         ant_list.append(QueenAnt(True, 10, "adulte"))  # reine à devenir
@@ -67,7 +74,7 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbr_birth):
         input("press enter to continue")
 
     while True:
-
+        input("press enter to continue")
         foodmodifier = 1
         displayant = ""
         displayfood = ""

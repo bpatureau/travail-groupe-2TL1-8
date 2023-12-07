@@ -59,6 +59,10 @@ def main(food_stock, queen_nbr, ant_weight, ant_nbr, nbr_birth):
                 ant_list.clear()
 
     def affichage(message):
+        '''
+        :param message:
+        :return:
+        '''
         print(message)
         input("press enter to continue")
 

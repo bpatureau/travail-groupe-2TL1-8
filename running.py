@@ -1,15 +1,15 @@
-import classes.Basic_ant
-import classes.Queen_ant
+import classes.Basic_ant as BasicAnt
+import classes.Queen_ant as QueenAnt
+import classes.food as Food
 import functions
 
 if __name__ == "running.py" :
 
     nbrdeadant = 0
     day = day + 1
-    consumed_food, brought_food = functions.manageFoodStock()
-    food_stock = food_stock + brought_food
+    Food.foodStock.updatedFood(Food.foodStock.manageFoodStock(ant_nbr, ant_weight))
     if food_stock - consumed_food < 0:
-        nbrdeadant = (food_stock - consumed_food) * classes.Basic_ant.ant_weight / 2 * -1
+        nbrdeadant = (food_stock - consumed_food) * BasicAnt.ant_weight / 2 * -1
     manageAntTable(nbrdeadant)
     ant_nbr = len(ant_list)
     food_stock = food_stock - consumed_food

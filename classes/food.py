@@ -1,4 +1,4 @@
-class food:
+class foodStock:
     def __init__(self):
         pass
 

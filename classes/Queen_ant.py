@@ -7,3 +7,5 @@ class Queen_ant(Basic_ant):
 
     def __str__(self):
         return f"Reine"
+
+

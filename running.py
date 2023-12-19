@@ -1,11 +1,8 @@
 import classes.Ant_hill as antHill
-import classes.Basic_ant as basicAnt
-import classes.Queen_ant as queenAnt
-import classes.food as food
 import classes.game as game
 import functions
 
-if __name__ == "running.py" :
+if __name__ == "running.py":
 
     """définition des variables initiales """
 
@@ -17,7 +14,7 @@ if __name__ == "running.py" :
 
     """création de la colonie"""
 
-    game.game.hill_constructor(initial_ant_queen_nbr, initial_ant_nbr)
+    game.game.hill_constructor(initial_ant_queen_nbr, initial_ant_nbr, day)
     ant_nbr = len(antHill.Ant_hill.ant_alive())
 
     """boucle principale"""

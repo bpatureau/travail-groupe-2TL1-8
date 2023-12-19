@@ -14,20 +14,20 @@ class Ant_hill:
     def ant_alive(self):
         return self.ant_list
 
-    def addAnt(self):
+    def addAnt(self, day):
         """
         PRE :
         POST : ajoute à la liste 'ant_list' une nouvelle instance Ant
         """
-        newAnt = classes.Basic_ant
+        newAnt = classes.Basic_ant.Basic_ant(True, day, "adulte")
         self.ant_list.append(newAnt)
 
-    def addQueen(self):
+    def addQueen(self, day):
         """
         PRE :
         POST : ajoute à la liste 'ant_list' une nouvelle instance Queen_ant
         """
-        newQueen = classes.Queen_ant
+        newQueen = classes.Queen_ant.Queen_ant(True, day, "adulte")
         self.ant_list.append(newQueen)
 
     def killAnt(self):

@@ -26,7 +26,7 @@ class foodStock:
             food_stock = 0
         return food_stock
 
-    def nbr_dead_ant(self, food_stock, consumed_food, ant_weight ):
+    def nbr_dead_ant(self, food_stock, consumed_food, ant_weight):
         """
         PRE : reçois en paramètre ;
             food_stock : la quantitée de nourriture dans la colonie (int)

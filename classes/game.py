@@ -1,7 +1,5 @@
 import classes.Ant_hill as ant_hill
-import classes.Basic_ant as basic_ant
 import classes.food as food
-import functions
 
 
 class game:
@@ -33,13 +31,13 @@ class game:
         new_food_stock = food.foodStock.updatedFood(food_stock, brought_food, consumed_food)
         return day, ant_nbr, new_food_stock, consumed_food
 
-    def hill_constructor(self, initial_ant_queen_nbr, initial_ant_nbr):
+    def hill_constructor(self, initial_ant_queen_nbr, initial_ant_nbr, day):
         """
         PRE : reçois en paramètre le nombre de reine et de fourmis voulu dans la colonie (int)
         POST : ajoute les fourmis dans la liste de ant_hill
         """
         for x in range(initial_ant_queen_nbr):
-            ant_hill.Ant_hill.addQueen()
+            ant_hill.Ant_hill.addQueen(day)
         for y in range(initial_ant_nbr):
-            ant_hill.Ant_hill.addAnt()
+            ant_hill.Ant_hill.addAnt(day)
 

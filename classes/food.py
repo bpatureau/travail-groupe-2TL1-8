@@ -1,6 +1,8 @@
 class foodStock:
-    def __init__(self):
-        pass
+    def __init__(self, food_stock, brought_food, consumed_food):
+        self.food_stock = food_stock
+        self.brought_food = brought_food
+        self.consumed_food = consumed_food
 
     def __str__(self):
         return "classe permettant de gérer la nourriture"

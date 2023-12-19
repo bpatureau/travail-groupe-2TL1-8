@@ -10,7 +10,7 @@ def antConstructor(ant_nbr):
         ant_list.append(Basic_ant(True, day, "oeuf"))
 
 
-def affichage():
+def affichage(day, ant_nbr, food_stock, consumed_food):
     """
     PRE :
     POST : retourne un string contenant les statistiques actuelles de la colonie

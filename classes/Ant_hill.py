@@ -11,6 +11,9 @@ class Ant_hill:
     def __str__(self):
         return "colonie de fourmis"
 
+    def ant_alive(self):
+        return self.ant_list
+
     def addAnt(self):
         """
         PRE :

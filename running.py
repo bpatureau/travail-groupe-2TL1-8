@@ -1,24 +1,27 @@
-import classes.Basic_ant as BasicAnt
-import classes.Queen_ant as QueenAnt
-import classes.food as Food
+import classes.Ant_hill as antHill
+import classes.Basic_ant as basicAnt
+import classes.Queen_ant as queenAnt
+import classes.food as food
+import classes.game as game
 import functions
 
 if __name__ == "running.py" :
 
-    nbrdeadant = 0
-    day = day + 1
-    Food.foodStock.updatedFood(Food.foodStock.manageFoodStock(ant_nbr, ant_weight))
-    if food_stock - consumed_food < 0:
-        nbrdeadant = (food_stock - consumed_food) * BasicAnt.ant_weight / 2 * -1
-    manageAntTable(nbrdeadant)
-    ant_nbr = len(ant_list)
-    food_stock = food_stock - consumed_food
-    if food_stock < 0:
-        food_stock = 0
-    if ant_nbr <= 0:
-        ant_nbr = 0
-        affichage()
-        print("Toutes les fourmis sont mortes")
-        break
-    else:
-        affichage()
+    """définition des variables initiales """
+
+    day = 0
+    ant_weight = 6
+    food_stock = 1000
+    initial_ant_queen_nbr = 1
+    initial_ant_nbr = 1000
+
+    """création de la colonie"""
+
+    game.game.hill_constructor(initial_ant_queen_nbr, initial_ant_nbr)
+    ant_nbr = len(antHill.Ant_hill.ant_alive())
+
+    """boucle principale"""
+
+    if input("press enter"):
+        day, ant_nbr, food_stock, consumed_food = game.game.aDay(day, ant_weight, ant_nbr, food_stock, ant_weight)
+        functions.affichage(day, ant_nbr, food_stock, consumed_food)

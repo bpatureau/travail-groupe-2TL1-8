@@ -1,12 +1,17 @@
 class foodStock:
-    def __init__(self, food_stock):
-        self.food_stock = food_stock
+    def __init__(self):
+        self._food_stock = 0
 
     def __str__(self):
         return "classe permettant de gérer la nourriture"
 
-    def getFoodStock(self):
-        return self.food_stock
+    @property
+    def food_stock(self):
+        return self._food_stock
+
+    @food_stock.setter
+    def food_stock(self, value):
+        self._food_stock = value
 
     def manageFoodStock(self, ant_nbr, ant_weight):
         """
@@ -23,10 +28,11 @@ class foodStock:
         PRE :
         POST : met à jour la quantitée actuelle de nourriture dans la colonie (int)
         """
-        self.food_stock = self.food_stock + brought_food - consumed_food
-        if self.food_stock < 0:
-            self.food_stock = 0
-        return self.food_stock
+        new_food_stock = self._food_stock + brought_food - consumed_food
+        if new_food_stock < 0:
+            self._food_stock = 0
+        print(new_food_stock)
+        self._food_stock = new_food_stock
 
     def nbr_dead_ant(self, consumed_food, ant_weight):
         """

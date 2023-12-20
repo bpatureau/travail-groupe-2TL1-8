@@ -23,14 +23,13 @@ class game:
              new_food_stock : la quantitée mise a jour de nourriture dans la colonie (int)
         """
         new_day = day + 1
-        food_stock = food.foodStock(food_stock)
+        food_stock = food.foodStock()
         colony = ant_hill.Ant_hill()
 
         consumed_food, brought_food = food_stock.manageFoodStock(ant_nbr, ant_weight)
-        if food_stock.getFoodStock() - consumed_food <= 0:
+        if food_stock._food_stock - consumed_food <= 0:
             nbr_dead_ant = food_stock.nbr_dead_ant(consumed_food, ant_weight)
             for x in range(nbr_dead_ant):
                 colony.killAnt()
-        new_ant_nbr = colony.nbr_ant_alive()
-        new_food_stock = food_stock.updatedFood(consumed_food, brought_food)
-        return new_day, new_ant_nbr, new_food_stock, consumed_food
+        food_stock.updatedFood(consumed_food, brought_food)
+        return new_day, consumed_food

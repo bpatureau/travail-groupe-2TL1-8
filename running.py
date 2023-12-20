@@ -9,9 +9,9 @@ if True:
 
     day = 0
     ant_weight = 6
-    food_stock = 5000
+    food_stock = 1000
     initial_ant_queen_nbr = 1
-    initial_ant_nbr = 300
+    initial_ant_nbr = 100
 
     """création des instances"""
 

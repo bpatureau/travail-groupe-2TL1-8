@@ -1,5 +1,5 @@
-import classes.Basic_ant
-import classes.Queen_ant
+import classes.Basic_ant as basic
+import classes.Queen_ant as queen
 import random
 
 
@@ -19,7 +19,7 @@ class Ant_hill:
         PRE :
         POST : ajoute à la liste 'ant_list' une nouvelle instance Ant
         """
-        newAnt = classes.Basic_ant.Basic_ant(True, day, "adulte")
+        newAnt = basic.Basic_ant(True, day, "adulte")
         self.ant_list.append(newAnt)
 
     def addQueen(self, day):
@@ -27,7 +27,7 @@ class Ant_hill:
         PRE :
         POST : ajoute à la liste 'ant_list' une nouvelle instance Queen_ant
         """
-        newQueen = classes.Queen_ant.Queen_ant(True, day, "adulte")
+        newQueen = queen.Queen_ant(True, day, "adulte")
         self.ant_list.append(newQueen)
 
     def killAnt(self):
@@ -41,6 +41,13 @@ class Ant_hill:
                 self.ant_list.pop(randomAnt)
         except IndexError:
             print("no more ants")
+
+    def addEgg(self, nbr_birth, day):
+        egg = basic.Basic_ant(True, day, "oeuf")
+        count = sum(isinstance(ant, queen.Queen_ant) for ant in self.ant_list)
+        for x in range(nbr_birth):
+            for y in range(count):
+                self.ant_list.append(egg)
 
     def hill_constructor(self, initial_ant_queen_nbr, initial_ant_nbr, day):
         """

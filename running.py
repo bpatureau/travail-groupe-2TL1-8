@@ -48,6 +48,12 @@ def main_menu():
 def launch():
     py.pygame.display.set_caption('SIMULATION')
 
+    """création des instances"""
+
+    runningGame = game.game()
+    colony = antHill.Ant_hill()
+    food = foodModule.foodStock()
+
     """définition des variables initiales """
 
     day = 0
@@ -55,18 +61,15 @@ def launch():
     food_stock = 5000
     initial_ant_queen_nbr = 1
     initial_ant_nbr = 300
-
-    """création des instances"""
-
-    runningGame = game.game()
-    colony = antHill.Ant_hill()
-    food = foodModule.foodStock()
+    nbr_birth = 10
     food._food_stock = food_stock
 
     """création de la colonie"""
 
     colony.hill_constructor(initial_ant_queen_nbr, initial_ant_nbr, day)
     ant_nbr = colony.nbr_ant_alive()
+
+    """début du script"""
 
     screen.fill((0, 0, 0))
     py.pygame.display.update()
@@ -79,7 +82,11 @@ def launch():
             if event.type == py.pygame.KEYDOWN:
                 if event.key == py.pygame.K_SPACE:
                     screen.fill((0, 0, 0))
-                    day, consumed_food = runningGame.aDay(day, food, colony, ant_nbr, ant_weight)
+
+                    """simulation d'une journée dans la fourmilère"""
+
+                    day, consumed_food = runningGame.aDay(day, food, colony, ant_nbr, ant_weight, nbr_birth)
+
                     py.display_stats(screen, stat_font, day, len(colony.ant_list), food.food_stock, consumed_food)
 
         py.pygame.display.update()

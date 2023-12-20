@@ -28,11 +28,11 @@ class foodStock:
         PRE :
         POST : met à jour la quantitée actuelle de nourriture dans la colonie (int)
         """
-        new_food_stock = self._food_stock + brought_food - consumed_food
+        new_food_stock = self.food_stock + brought_food - consumed_food
         if new_food_stock < 0:
             self._food_stock = 0
-        print(new_food_stock)
-        self._food_stock = new_food_stock
+        else:
+            self._food_stock = new_food_stock
 
     def nbr_dead_ant(self, consumed_food, ant_weight):
         """

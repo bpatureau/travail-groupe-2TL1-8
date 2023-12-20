@@ -10,7 +10,7 @@ class game:
     def __str__(self):
         return ""
 
-    def aDay(self, day, ant_nbr, food_stock, ant_weight):
+    def aDay(self, day, instance_food, instance_colony, ant_nbr, ant_weight):
         """
         PRE : reçois les paramètres ;
             day : le jour actuel de la simulation (int)
@@ -23,13 +23,10 @@ class game:
              new_food_stock : la quantitée mise a jour de nourriture dans la colonie (int)
         """
         new_day = day + 1
-        food_stock = food.foodStock()
-        colony = ant_hill.Ant_hill()
-
-        consumed_food, brought_food = food_stock.manageFoodStock(ant_nbr, ant_weight)
-        if food_stock._food_stock - consumed_food <= 0:
-            nbr_dead_ant = food_stock.nbr_dead_ant(consumed_food, ant_weight)
+        consumed_food, brought_food = instance_food.manageFoodStock(ant_nbr, ant_weight)
+        if instance_food.food_stock - consumed_food <= 0:
+            nbr_dead_ant = instance_food.nbr_dead_ant(consumed_food, ant_weight)
             for x in range(nbr_dead_ant):
-                colony.killAnt()
-        food_stock.updatedFood(consumed_food, brought_food)
+                instance_colony.killAnt()
+        instance_food.updatedFood(consumed_food, brought_food)
         return new_day, consumed_food

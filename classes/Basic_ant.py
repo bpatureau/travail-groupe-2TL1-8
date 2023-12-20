@@ -7,6 +7,6 @@ class Basic_ant:
     def __str__(self):
         return "classe générique de fourmis."
 
-    def isGonnaDie(self, counter):
-        if counter - self.birth >= 10:
+    def isGonnaDie(self, day):
+        if day - self.birth >= 10:
             self.isAlive = False

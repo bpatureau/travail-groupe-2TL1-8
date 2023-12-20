@@ -1,7 +1,6 @@
 import classes.Ant_hill as antHill
 import classes.game as game
 import classes.food as foodModule
-import functions
 import pygameUtils as py
 
 py.pygame.init()
@@ -81,7 +80,7 @@ def launch():
                 if event.key == py.pygame.K_SPACE:
                     screen.fill((0, 0, 0))
                     day, consumed_food = runningGame.aDay(day, food, colony, ant_nbr, ant_weight)
-                    py.display_stats(screen, stat_font, day, ant_nbr, food.food_stock, consumed_food)
+                    py.display_stats(screen, stat_font, day, len(colony.ant_list), food.food_stock, consumed_food)
 
         py.pygame.display.update()
 

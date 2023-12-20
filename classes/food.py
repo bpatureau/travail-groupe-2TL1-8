@@ -7,7 +7,7 @@ class foodStock:
 
     @property
     def food_stock(self):
-        return self._food_stock
+        return round(self._food_stock)
 
     @food_stock.setter
     def food_stock(self, value):
@@ -40,5 +40,5 @@ class foodStock:
             ant_weight : le poids moyen d'une fourmis (int)
         POST : retourne le nombre de fourmis qui doivent mourrir (int)
         """
-        nbrdeadant = round((self.food_stock - consumed_food) * ant_weight / 2 * -1)
+        nbrdeadant = round((self.food_stock - consumed_food) * ant_weight / 15 * -1)
         return nbrdeadant

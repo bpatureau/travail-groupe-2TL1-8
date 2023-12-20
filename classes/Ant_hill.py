@@ -36,8 +36,11 @@ class Ant_hill:
         POST : enlève aléatoirement de la liste 'ant_list' une instance Ant
         """
         randomAnt = random.randint(0, len(self.ant_list))
-        if len(self.ant_list) > 0 :
-            self.ant_list.pop(randomAnt)
+        try:
+            if len(self.ant_list) > 0:
+                self.ant_list.pop(randomAnt)
+        except IndexError:
+            print("no more ants")
 
     def hill_constructor(self, initial_ant_queen_nbr, initial_ant_nbr, day):
         """

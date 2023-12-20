@@ -1,7 +1,5 @@
 import pygame
 
-pygame.init()
-
 
 class Button:
     """
@@ -37,69 +35,59 @@ class Button:
         return False
 
 
-screen = pygame.display.set_mode((1280, 720), )
-background = pygame.image.load("img/background.png").convert()
-get_font = pygame.font.SysFont("impact", 100)
+def drawText(surface, text, color, rect, font, aa=False, bkg=None):
+    rect = pygame.Rect(rect)
+    y = rect.top
+    lineSpacing = -2
+
+    # get the height of the font
+    fontHeight = font.size("Tg")[1]
+
+    while text:
+        i = 1
+
+        # determine if the row of text will be outside our area
+        if y + fontHeight > rect.bottom:
+            break
+
+        # determine maximum width of line
+        while font.size(text[:i])[0] < rect.width and i < len(text):
+            i += 1
+
+        # if we've wrapped the text, then adjust the wrap to the last word
+        if i < len(text):
+            i = text.rfind(" ", 0, i) + 1
+
+        # render the line and blit it to the surface
+        if bkg:
+            image = font.render(text[:i], 1, color, bkg)
+            image.set_colorkey(bkg)
+        else:
+            image = font.render(text[:i], aa, color)
+
+        surface.blit(image, (rect.left, y))
+        y += fontHeight + lineSpacing
+
+        # remove the text we just blitted
+        text = text[i:]
+
+    return text
 
 
-def main_menu():
-    pygame.display.set_caption('FOURMIZ')
+def display_stats(surface, font, day, ant_nbr, food_stock, consumed_food):
 
-    while True:
-        screen.blit(background, (0, 0))
-        mouse_pos = pygame.mouse.get_pos()
-        menu_text = get_font.render("FOURMIZ", True, (0, 0, 0))
-        menu_rect = menu_text.get_rect(center=(640, 100))
-
-        launch_button = Button((0, 0, 0), 525, 250, 200, 50, 'LAUNCH')
-        launch_button.draw(screen)
-
-        options_button = Button((0, 0, 0), 525, 400, 200, 50, 'OPTIONS')
-        options_button.draw(screen)
-
-        quit_button = Button((0, 0, 0), 525, 550, 200, 50, 'QUIT')
-        quit_button.draw(screen)
-
-        screen.blit(menu_text, menu_rect)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if launch_button.isOver(mouse_pos):
-                    launch()
-                if options_button.isOver(mouse_pos):
-                    options()
-                if quit_button.isOver(mouse_pos):
-                    pygame.quit()
-
-        pygame.display.update()
-
-
-def launch():
-    pygame.display.set_caption('SIMULATION')
-
-    while True:
-        screen.fill((0, 0, 0))
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
-        pygame.display.update()
-
-
-def options():
-    pygame.display.set_caption('OPTIONS')
-
-    while True:
-        screen.fill((0, 0, 0))
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
-        pygame.display.update()
-
-
-main_menu()
+    day_text = f"Jour : {day}"
+    ant_nbr_text = f"Fourmis :{ant_nbr}"
+    food_stock_text = f"Nourriture :{food_stock}"
+    stat_rectangle = pygame.Rect(1000, 50, 200, 300)
+    day = font.render(day_text, True, (0, 0, 0))
+    ant_nbr = font.render(ant_nbr_text, True, (0, 0, 0))
+    food = font.render(food_stock_text, True, (0, 0, 0))
+    day_rect = day.get_rect(center=(1100, 60))
+    ant_nbr_rect = day.get_rect(center=(1050, 90))
+    food_rect = day.get_rect(center=(1050, 120))
+    pygame.draw.rect(surface, (255, 255, 255), stat_rectangle)
+    surface.blit(day, day_rect)
+    surface.blit(ant_nbr, ant_nbr_rect)
+    surface.blit(food, food_rect)
+    pygame.display.flip()

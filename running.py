@@ -1,6 +1,7 @@
 import classes.Ant_hill as antHill
 import classes.game as game
 import classes.food as foodModule
+import classes.event as eventModule
 import pygameUtils as py
 
 py.pygame.init()
@@ -53,7 +54,7 @@ def launch():
     runningGame = game.game()
     colony = antHill.Ant_hill()
     food = foodModule.foodStock()
-
+    randomEvent = eventModule.Event()
     """définition des variables initiales """
 
     day = 0
@@ -85,7 +86,7 @@ def launch():
 
                     """simulation d'une journée dans la fourmilère"""
 
-                    day, consumed_food = runningGame.aDay(day, food, colony, ant_nbr, ant_weight, nbr_birth)
+                    day, consumed_food = runningGame.aDay(day, food, colony, randomEvent, ant_nbr, ant_weight, nbr_birth)
 
                     py.display_stats(screen, stat_font, day, len(colony.ant_list), food.food_stock, consumed_food)
 

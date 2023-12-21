@@ -38,8 +38,8 @@ class Button:
 def display_stats(surface, font, day, ant_nbr, food_stock, consumed_food):
 
     day_text = f"Jour : {day}"
-    ant_nbr_text = f"Fourmis :{ant_nbr}"
-    food_stock_text = f"Nourriture :{food_stock}"
+    ant_nbr_text = f"Fourmis : {ant_nbr}"
+    food_stock_text = f"Nourriture : {food_stock}"
     stat_rectangle = pygame.Rect(1000, 50, 200, 100)
     day = font.render(day_text, True, (0, 0, 0))
     ant_nbr = font.render(ant_nbr_text, True, (0, 0, 0))

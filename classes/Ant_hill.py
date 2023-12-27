@@ -74,10 +74,6 @@ class Ant_hill:
             json.dump(ant_data_liste, file, indent=4)
 
 
-a = Ant_hill()
-a.hill_constructor(1, 20, 6)
-print(type(a.ant_list[0]).__name__, (a.ant_list[0]).birth)
 
-a.save("testo")
 
 

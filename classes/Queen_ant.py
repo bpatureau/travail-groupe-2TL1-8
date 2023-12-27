@@ -1,4 +1,4 @@
-import classes.Basic_ant as Basic_ant
+import Basic_ant as Basic_ant
 
 
 class Queen_ant(Basic_ant.Basic_ant):

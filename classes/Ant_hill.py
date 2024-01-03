@@ -1,3 +1,5 @@
+import sys
+
 import Basic_ant
 import Queen_ant
 import random
@@ -55,6 +57,10 @@ class Ant_hill:
             self.addAnt(day)
 
     def save(self, fichier):
+        """
+        PRE :
+        POST :
+        """
         ant_data_liste = []
 
         for ant in self.ant_list:
@@ -67,11 +73,42 @@ class Ant_hill:
             ant_data_liste.append(data)
 
         path_courrant = os.getcwd()
-        path = os.path.dirname(path_courrant)
-        path_save = path + "/save/" + fichier
+        path_parent = os.path.dirname(path_courrant)
+        path_save = path_parent + "/save/" + fichier
 
         with open(path_save, "w") as file:
             json.dump(ant_data_liste, file, indent=4)
+
+    def load(self, fichier):
+        """
+        PRE :
+        POST :
+        """
+        path_courrant = os.getcwd()
+        path_parent = os.path.dirname(path_courrant)
+        path_save = path_parent + "/save/" + fichier
+
+        if not os.path.exists(path_save):
+            print("Le fichier de sauvegarde n'existe pas.")
+            return
+
+        with open(path_save, "r") as file:
+            ant_data_list = json.load(file)
+
+        for data in ant_data_list:
+            ant_class_name = data["antClass"]
+            is_alive = data["isAlive"]
+            birth = data["birth"]
+            phase = data["phase"]
+
+            if ant_class_name == "Basic_ant":
+                self.addAnt(birth)
+
+            elif ant_class_name == "Queen_ant":
+                self.addQueen(birth)
+
+        print("Données chargées avec succès.")
+
 
 
 

@@ -6,6 +6,7 @@ import random
 class Ant_hill:
 
     def __init__(self):
+
         self._ant_list = []
     @property
     def get_ant_list(self):
@@ -60,3 +61,68 @@ class Ant_hill:
             self.addQueen(day)
         for y in range(initial_ant_nbr):
             self.addAnt(day)
+
+
+    def save(self, fichier, food_stock, day):
+        """
+        PRE :reçois le chemin du fichier de sauvgarde, la nouriture restant, le jour
+        POST :Crée un nouveau fichier json de sauvegarde dans le dossier save
+        remplace le fichier si il existe déja.
+        """
+        all_data =[]
+        colony_data = [day, food_stock]
+        ant_data_liste = []
+
+        for ant in self.ant_list:
+            data = {
+                "antClass": type(ant).__name__,
+                "isAlive": ant.get_isAlive,
+                "birth": ant.birth,
+                "phase": ant.phase
+            }
+            ant_data_liste.append(data)
+
+        all_data = [colony_data, ant_data_liste]
+
+        path_save = fichier
+
+        with open(path_save, "w") as file:
+            json.dump(all_data, file, indent=4)
+
+    def load(self, fichier):
+        """
+        PRE :-reçois le fichier de sauvgarde
+        -les methodes addAnt et addQueen doivent existé
+        -les variable self.ant_list, self.day et self.food doivent existé
+
+        POST :change la valeur de self.ant_list
+
+        """
+
+        path_save = fichier
+
+        if not os.path.exists(path_save):
+            print("Le fichier de sauvegarde n'existe pas.")
+            return
+
+        with open(path_save, "r") as file:
+            all_data = json.load(file)
+
+        ant_data_list = all_data[1]
+        colony_data = all_data[0]
+        self.day = colony_data[0]
+        self.food = colony_data[1]
+
+        for data in ant_data_list:
+            ant_class_name = data["antClass"]
+            birth = data["birth"]
+            phase = data["phase"]
+
+            if ant_class_name == "Basic_ant":
+                self.addAnt(birth)
+
+            elif ant_class_name == "Queen_ant":
+                self.addQueen(birth)
+
+        print("Données chargées avec succès.")
+

@@ -3,6 +3,7 @@ import classes.game as game
 import classes.food as foodModule
 import classes.event as eventModule
 import pygameUtils as py
+import classes.room as room
 
 py.pygame.init()
  
@@ -55,6 +56,8 @@ def launch():
     colony = antHill.Ant_hill()
     food = foodModule.foodStock()
     randomEvent = eventModule.Event()
+    queenNest = room.Room("queenNest", (100, 100), (20, 10))
+    print(queenNest.name)
     """définition des variables initiales """
 
     day = 0

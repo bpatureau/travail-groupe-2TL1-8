@@ -75,7 +75,7 @@ class Ant_hill:
         for ant in self.ant_list:
             data = {
                 "antClass": type(ant).__name__,
-                "isAlive": ant.isAlive,
+                "isAlive": ant.get_isAlive,
                 "birth": ant.birth,
                 "phase": ant.phase
             }
@@ -114,7 +114,6 @@ class Ant_hill:
 
         for data in ant_data_list:
             ant_class_name = data["antClass"]
-            is_alive = data["isAlive"]
             birth = data["birth"]
             phase = data["phase"]
 

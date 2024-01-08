@@ -1,68 +1,314 @@
 [
-    {
-        "antClass": "Queen_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    },
-    {
-        "antClass": "Basic_ant",
-        "isAlive": true,
-        "birth": 3,
-        "phase": "adulte"
-    }
+    [
+        3,
+        500
+    ],
+    [
+        {
+            "antClass": "Queen_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        },
+        {
+            "antClass": "Basic_ant",
+            "isAlive": true,
+            "birth": 3,
+            "phase": "adulte"
+        }
+    ]
 ]

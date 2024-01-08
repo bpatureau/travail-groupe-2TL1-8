@@ -1,83 +1,112 @@
+import pygame
+from pygame.locals import *
 import classes.Ant_hill as antHill
 import classes.game as game
 import classes.food as foodModule
 import pygameUtils as py
-import loader_save as save
 import os
+import running as run
 
+pygame.init()
 
-py.pygame.init()
-
-screen = py.pygame.display.set_mode((1280, 720), )
-background = py.pygame.image.load("img/background.png").convert()
-get_font = py.pygame.font.SysFont("impact", 100)
+largeur_fenetre = 1280
+hauteur_fenetre = 720
 stat_font = py.pygame.font.SysFont("impact", 20)
 
+screen = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
 
-def main_menu():
-    py.pygame.display.set_caption('FOURMIZ')
+background = pygame.image.load("img/background.png").convert()
 
-    while True:
+pygame.display.set_caption('Menu de sauvegarde de partie')
+
+# Fonction pour afficher le menu des sauvegardes.
+def afficher_menu(sauvegardes, debut_index):
+    font = pygame.font.Font(None, 36)
+    bouton_hauteur = 50
+    boutons = []
+    nb_max_boutons_affiches = 10
+
+    rect_haut = font.render("^", True, (0, 0, 0)).get_rect(center=(largeur_fenetre // 2, bouton_hauteur // 2))
+    rect_bas = font.render("v", True, (0, 0, 0)).get_rect(center=(largeur_fenetre // 2, (nb_max_boutons_affiches + 1) * bouton_hauteur))
+
+    # Affichage des flèches vers le haut et vers le bas dans la liste des boutons
+    boutons.append((font.render("^", True, (0, 0, 0)), rect_haut, "HAUT"))
+    boutons.append((font.render("v", True, (0, 0, 0)), rect_bas, "BAS"))
+
+    for i, nom_sauvegarde in enumerate(sauvegardes[debut_index:debut_index + nb_max_boutons_affiches], debut_index):
+        texte = font.render(nom_sauvegarde, True, (0, 0, 0))
+        rect = texte.get_rect(center=(largeur_fenetre // 2, (i - debut_index + 1) * bouton_hauteur))
+        boutons.append((texte, rect, nom_sauvegarde))
+
+    return boutons, rect_haut, rect_bas, nb_max_boutons_affiches
+
+# Fonction principale pour gérer le menu des sauvegardes.
+def menu_principal(sauvegardes):
+    debut_index = 0
+    running = True
+
+    while running:
+        screen.fill((0, 0, 0))
+
         screen.blit(background, (0, 0))
-        mouse_pos = py.pygame.mouse.get_pos()
-        menu_text = get_font.render("FOURMIZ", True, (0, 0, 0))
-        menu_rect = menu_text.get_rect(center=(640, 100))
-
-        launch_button = py.Button((0, 0, 0), 525, 250, 200, 50, 'LAUNCH')
-        launch_button.draw(screen)
-
-        charg_button = py.Button((0, 0, 0), 525, 350, 200, 50, 'CHARGER')
-        charg_button.draw(screen)
-
-        options_button = py.Button((0, 0, 0), 525, 450, 200, 50, 'OPTIONS')
-        options_button.draw(screen)
-
-        quit_button = py.Button((0, 0, 0), 525, 550, 200, 50, 'QUIT')
-        quit_button.draw(screen)
 
 
-
-        screen.blit(menu_text, menu_rect)
-
-        for event in py.pygame.event.get():
-            if event.type == py.pygame.QUIT:
-                py.pygame.quit()
-            if event.type == py.pygame.MOUSEBUTTONDOWN:
-                if launch_button.isOver(mouse_pos):
-                    launch()
-                if charg_button.isOver(mouse_pos):
-                    save.menu_principal(liste())
-                if options_button.isOver(mouse_pos):
-                    options()
-                if quit_button.isOver(mouse_pos):
-                    py.pygame.quit()
-
-        py.pygame.display.update()
+        boutons, rect_haut, rect_bas, nb_max_boutons_affiches = afficher_menu(sauvegardes, debut_index)
 
 
-def launch():
+        for texte, rect, _ in boutons:
+            screen.blit(texte, rect)
+
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                running = False  # Quitte si fermeture de fenêtre.
+            elif event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mouse_pos = pygame.mouse.get_pos()  # Obtient la position actuelle de la souris.
+                    # Vérifie si les flèches haut et bas sont cliquées pour faire défiler le menu.
+                    if rect_haut.collidepoint(mouse_pos) and debut_index > 0:
+                        debut_index -= 1
+                    elif rect_bas.collidepoint(mouse_pos) and debut_index + nb_max_boutons_affiches < len(sauvegardes):
+                        debut_index += 1
+
+                    # Vérifie si un bouton de sauvegarde est cliqué
+                    for texte, rect, nom_sauvegarde in boutons[2:]:
+                        if rect.collidepoint(mouse_pos):
+                            lauch(nom_sauvegarde)
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+
+def lauch(nom_sauvegarde):
     py.pygame.display.set_caption('SIMULATION')
 
     save_button = py.Button((0, 160, 0), 1150, 650, 100, 50, 'Save')  # bouton save
-    """définition des variables initiales """
 
-    day = 0
+    """définition des variables initiales """
+    colony = antHill.Ant_hill()
+    colony.load(f"{chemin()}{nom_sauvegarde}")
+
+    print(colony.day)
+    print(colony.food)
+    print(colony.ant_list)
+
+    day = colony.day
     ant_weight = 6
-    food_stock = 5000
-    initial_ant_queen_nbr = 1
-    initial_ant_nbr = 300
+    food_stock = colony.food
 
     """création des instances"""
 
     runningGame = game.game()
-    colony = antHill.Ant_hill()
     food = foodModule.foodStock()
     food._food_stock = food_stock
 
     """création de la colonie"""
 
-    colony.hill_constructor(initial_ant_queen_nbr, initial_ant_nbr, day)
     ant_nbr = colony.nbr_ant_alive()
+
 
     screen.fill((0, 0, 0))
     py.pygame.display.update()
@@ -137,13 +166,13 @@ def page_save(colony, day, food):
                 if bouton_ok.collidepoint(event.pos):
                     print(input_texte)
                     colony.save(f"{chemin()}{input_texte}", food, day)
-                    main_menu()
+                    run.main_menu()
                     return
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     print(input_texte)
                     colony.save(f"{chemin()}{input_texte}", food, day)
-                    main_menu()
+                    run.main_menu()
                     return
                 if event.key == pygame.K_BACKSPACE:
                     input_texte = input_texte[:-1]
@@ -155,23 +184,6 @@ def page_save(colony, day, food):
 
         pygame.display.flip()
 
-
-
-
-
-def options():
-    py.pygame.display.set_caption('OPTIONS')
-
-    while True:
-        screen.fill((0, 0, 0))
-
-        for event in py.pygame.event.get():
-            if event.type == py.pygame.QUIT:
-                py.pygame.quit()
-
-        py.pygame.display.update()
-
-
 def liste():
     path = os.getcwd()
     path_save = path + '/save'
@@ -182,5 +194,3 @@ def chemin():
     path_save = path + '/save/'
     return path_save
 
-
-main_menu()

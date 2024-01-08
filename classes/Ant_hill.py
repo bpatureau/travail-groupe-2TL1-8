@@ -60,8 +60,9 @@ class Ant_hill:
 
     def save(self, fichier, food_stock, day):
         """
-        PRE :
-        POST :
+        PRE :reçois le chemin du fichier de sauvgarde, la nouriture restant, le jour
+        POST :Crée un nouveau fichier json de sauvegarde dans le dossier save
+        remplace le fichier si il existe déja.
         """
         all_data =[]
         colony_data = [day, food_stock]
@@ -78,9 +79,6 @@ class Ant_hill:
 
         all_data = [colony_data, ant_data_liste]
 
-        path_courrant = os.getcwd()
-        path_parent = os.path.dirname(path_courrant)
-        path_save = path_parent + "/save/" + fichier
         path_save = fichier
 
         with open(path_save, "w") as file:
@@ -88,12 +86,14 @@ class Ant_hill:
 
     def load(self, fichier):
         """
-        PRE :
-        POST :
+        PRE :-reçois le fichier de sauvgarde
+        -les methodes addAnt et addQueen doivent existé
+        -les variable self.ant_list, self.day et self.food doivent existé
+
+        POST :change la valeur de self.ant_list
+
         """
-        path_courrant = os.getcwd()
-        path_parent = os.path.dirname(path_courrant)
-        path_save = path_parent + "/save/" + fichier
+
         path_save = fichier
 
         if not os.path.exists(path_save):
@@ -123,16 +123,7 @@ class Ant_hill:
         print("Données chargées avec succès.")
 
 
-#a = Ant_hill()
-#a.hill_constructor(1, 25, 5)
-#a.save("test2", 700, 5)
-#print(a.ant_list)
 
-#b = Ant_hill()
-#b.load("test2")
-#print(b.food)
-#print(b.nbr_ant_alive())
-#print(b.ant_list)
 
 
 

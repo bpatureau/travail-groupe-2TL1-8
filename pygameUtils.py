@@ -1,6 +1,4 @@
 import pygame
-
-
 class Button:
     """
     code de la classe boutton :"https://www.youtube.com/watch?v=4_9twnEduFA"

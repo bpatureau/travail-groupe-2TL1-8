@@ -5,7 +5,7 @@ import classes.event as eventModule
 import pygameUtils as py
 
 py.pygame.init()
-
+ 
 screen = py.pygame.display.set_mode((1280, 720), )
 background = py.pygame.image.load("img/background.png").convert()
 get_font = py.pygame.font.SysFont("impact", 100)
@@ -88,7 +88,7 @@ def launch():
 
                     day, consumed_food = runningGame.aDay(day, food, colony, randomEvent, ant_nbr, ant_weight, nbr_birth)
 
-                    py.display_stats(screen, stat_font, day, len(colony.ant_list), food.food_stock, consumed_food)
+                    py.display_stats(screen, stat_font, day, len(colony._ant_list), food.food_stock, consumed_food)
 
         py.pygame.display.update()
 

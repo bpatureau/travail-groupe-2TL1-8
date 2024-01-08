@@ -3,9 +3,10 @@ import classes.game as game
 import classes.food as foodModule
 import classes.event as eventModule
 import pygameUtils as py
+import classes.room as room
 
 py.pygame.init()
-
+ 
 screen = py.pygame.display.set_mode((1280, 720), )
 background = py.pygame.image.load("img/background.png").convert()
 get_font = py.pygame.font.SysFont("impact", 100)
@@ -55,6 +56,8 @@ def launch():
     colony = antHill.Ant_hill()
     food = foodModule.foodStock()
     randomEvent = eventModule.Event()
+    queenNest = room.Room("queenNest", (100, 100), (20, 10))
+    print(queenNest.name)
     """définition des variables initiales """
 
     day = 0
@@ -88,7 +91,7 @@ def launch():
 
                     day, consumed_food = runningGame.aDay(day, food, colony, randomEvent, ant_nbr, ant_weight, nbr_birth)
 
-                    py.display_stats(screen, stat_font, day, len(colony.ant_list), food.food_stock, consumed_food)
+                    py.display_stats(screen, stat_font, day, len(colony._ant_list), food.food_stock, consumed_food)
 
         py.pygame.display.update()
 

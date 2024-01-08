@@ -1,7 +1,8 @@
 class Basic_ant:
     def __init__(self, isalive, birth, phase):
-        self._isAlive = isalive
-        self.birth = birth
+        self.isAlive = isalive
+        self._birth = birth
+
         self.phase = phase
 
     @property
@@ -10,7 +11,9 @@ class Basic_ant:
 
     def __str__(self):
         return "classe générique de fourmis."
-
+    @property
+    def birth(self):
+        return self._birth
     def isGonnaDie(self, day):
         if day - self.birth >= 10:
             self._isAlive = False
